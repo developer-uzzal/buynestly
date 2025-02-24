@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('police', function (Blueprint $table) {
+        Schema::create('policies', function (Blueprint $table) {
             $table->id();
             $table->enum('type', ['about', 'contact', 'policy', 'terms', 'privacy', 'faq', 'refund', 'shipping', 'return','support','how to buy']);
             $table->longText('des');
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('police');
+        Schema::dropIfExists('policies');
     }
 };

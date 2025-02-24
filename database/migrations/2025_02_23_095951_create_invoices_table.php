@@ -13,10 +13,25 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+
+            $table->string('total');
+            $table->string('vat');
+            $table->string('payable');
+            $table->string('cus_details');
+            $table->string('ship_details');
+            $table->string('trans_id');
+            $table->string('val_id');
+            $table->enum('delivery_status', ['pending', 'processing', 'shipped', 'delivered'])->default('pending');
+            $table->string('payment_status');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->restrictOnDelete()->cascadeOnUpdate();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();  
+
         });
     }
 
+    
     /**
      * Reverse the migrations.
      */
